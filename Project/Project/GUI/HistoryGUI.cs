@@ -235,9 +235,6 @@ namespace Project.GUI
                     ViewImportDetail form = new ViewImportDetail(id);
                     form.ShowDialog();
                 }
-
-
-
             }
         }
 

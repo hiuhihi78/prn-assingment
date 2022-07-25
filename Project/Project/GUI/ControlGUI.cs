@@ -1,4 +1,5 @@
-﻿using Project.Models;
+﻿using Project.Config;
+using Project.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,10 +14,20 @@ namespace Project.GUI
 {
     public partial class ControlGUI : Form
     {
+        Shop1Context context = new Shop1Context();
         public ControlGUI()
         {
             InitializeComponent();
             orderPage();
+            staff staff = context.staff.Find(Setting.staffId);
+            if (staff.IsManager)
+            {
+                btnManageAccout.Visible = true;
+            }
+            else
+            {
+                btnManageAccout.Visible = false;
+            }
         }
 
         private void btnProfile_Click(object sender, EventArgs e)
@@ -87,6 +98,21 @@ namespace Project.GUI
         void historyPage()
         {
             HistoryGUI form = new HistoryGUI();
+            form.TopLevel = false;
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.Show();
+            toolStripContainer1.ContentPanel.Controls.Clear();
+            toolStripContainer1.ContentPanel.Controls.Add(form);
+        }
+
+        private void btnManageAccout_Click(object sender, EventArgs e)
+        {
+            acccountPage();
+        }
+
+        void acccountPage()
+        {
+            ManageAccountGUI form = new ManageAccountGUI();
             form.TopLevel = false;
             form.FormBorderStyle = FormBorderStyle.None;
             form.Show();

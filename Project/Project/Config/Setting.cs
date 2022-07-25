@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Project.Config
 {
+
     class Setting
     {
         public static string UserName = "";
@@ -17,4 +18,21 @@ namespace Project.Config
         public static List<Order> listReportOrder = new List<Order>();
         public static List<Import> listReportImport = new List<Import>();
     }
+
+    class Role
+    {
+        private int id;
+        private string name;
+
+        public int Id { get => id; set => id = value; }
+        public string Name { get => name; set => name = value; }
+
+        public Role(int id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
+    }
+
+
 }

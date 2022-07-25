@@ -7,6 +7,9 @@
     <Compile Update="GUI\AddCategory.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="GUI\AddEditAccountGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="GUI\AddProductGUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -32,6 +35,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="GUI\MainGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GUI\ManageAccountGUI.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="GUI\OrderGUI.cs">
