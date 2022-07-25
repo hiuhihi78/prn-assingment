@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Project.Config;
 using Project.Models;
 using System;
 using System.Collections.Generic;
@@ -44,7 +45,7 @@ namespace Project.GUI
                 loadDataGirdView();
 
             }
-            
+
         }
 
         void loadDataGirdView()
@@ -88,7 +89,7 @@ namespace Project.GUI
             dataGridView1.Columns.Clear();
             if (isViewOrder)
             {
-                if(txtID.Text.Length > 0)
+                if (txtID.Text.Length > 0)
                 {
                     try
                     {
@@ -128,8 +129,8 @@ namespace Project.GUI
                         ).ToList();
                     }
                 }
-                
-               
+
+
                 dataGridView1.Columns["CustomerAddress"].Visible = false;
                 dataGridView1.Columns["DeliverDate"].Visible = false;
                 dataGridView1.Columns["Staff"].Visible = false;
@@ -173,11 +174,11 @@ namespace Project.GUI
                          ).ToList();
                     }
                 }
-                
+
                 dataGridView1.Columns["Staff"].Visible = false;
                 dataGridView1.Columns["ImportDetails"].Visible = false;
             }
-            
+
             int countColums = dataGridView1.Columns.Count;
             DataGridViewButtonColumn btnView = new DataGridViewButtonColumn();
             btnView.Name = "View";
@@ -203,7 +204,7 @@ namespace Project.GUI
         private void txtID_TextChanged(object sender, EventArgs e)
         {
             TextBox textBox = sender as TextBox;
-            if(textBox.Text.Length > 0)
+            if (textBox.Text.Length > 0)
             {
                 txtCustomer.Enabled = false;
                 txtStaff.Enabled = false;
@@ -238,6 +239,61 @@ namespace Project.GUI
 
 
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            bool isData = false;
+            if (isViewOrder)
+            {
+                if (dataGridView1.Rows.Count > 0)
+                {
+                    List<Order> listReportOrder = new List<Order>();
+                    for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                    {
+                        Order o = new Order();
+                        o.Id = (int)dataGridView1.Rows[i].Cells["Id"].Value;
+                        o.OrderDate = (DateTime)dataGridView1.Rows[i].Cells["OrderDate"].Value;
+                        o.CustomerName = (string)dataGridView1.Rows[i].Cells["CustomerName"].Value;
+                        o.CustomerPhone = (string)dataGridView1.Rows[i].Cells["CustomerPhone"].Value;
+                        o.TotalAmount = (double)dataGridView1.Rows[i].Cells["TotalAmount"].Value;
+                        o.StaffId = (int)dataGridView1.Rows[i].Cells["StaffId"].Value;
+                        listReportOrder.Add(o);
+                    }
+                    Setting.listReportOrder = listReportOrder;
+                    isData = true;
+                }
+                
+            }
+            else
+            {
+                if (dataGridView1.Rows.Count > 0)
+                {
+                    List<Import> listReportImport = new List<Import>();
+                    for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                    {
+                        Import imp = new Import();
+                        imp.Id = (int)dataGridView1.Rows[i].Cells["Id"].Value;
+                        imp.ImportDate = (DateTime)dataGridView1.Rows[i].Cells["ImportDate"].Value;
+                        imp.StaffId = (int)dataGridView1.Rows[i].Cells["StaffId"].Value;
+                        imp.TotalAmount = (double)dataGridView1.Rows[i].Cells["TotalAmount"].Value;
+                        listReportImport.Add(imp);
+                    }
+                    Setting.listReportImport = listReportImport;
+                    isData = true;
+                }
+                
+            }
+            if(isData)
+            {
+                ReportGUI report = new ReportGUI(isViewOrder);
+                report.ShowDialog();
+
+            } else
+            {
+                MessageBox.Show("No Have Data To Report!");
+            }
+            
         }
     }
 }

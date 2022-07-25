@@ -43,6 +43,9 @@
     <Compile Update="GUI\ProfileGUI.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="GUI\ReportGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="GUI\StartGUI.cs">
       <SubType>Form</SubType>
     </Compile>
