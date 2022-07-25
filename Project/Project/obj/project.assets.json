@@ -5967,11 +5967,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\Project\\Project\\Project.csproj",
+      "projectUniqueName": "C:\\Users\\Admin\\Desktop\\New folder\\prn-assingment\\Project\\Project\\Project.csproj",
       "projectName": "Project",
-      "projectPath": "C:\\Users\\Admin\\source\\repos\\Project\\Project\\Project.csproj",
+      "projectPath": "C:\\Users\\Admin\\Desktop\\New folder\\prn-assingment\\Project\\Project\\Project.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Admin\\source\\repos\\Project\\Project\\obj\\",
+      "outputPath": "C:\\Users\\Admin\\Desktop\\New folder\\prn-assingment\\Project\\Project\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
