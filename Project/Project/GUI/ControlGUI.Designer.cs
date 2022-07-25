@@ -30,13 +30,13 @@ namespace Project.GUI
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnManageAccout = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnProduct = new System.Windows.Forms.Button();
             this.btnImport = new System.Windows.Forms.Button();
             this.btnOrder = new System.Windows.Forms.Button();
             this.btnProfile = new System.Windows.Forms.Button();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
-            this.btnManageAccout = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
             this.SuspendLayout();
@@ -54,13 +54,23 @@ namespace Project.GUI
             this.panel1.Size = new System.Drawing.Size(199, 550);
             this.panel1.TabIndex = 0;
             // 
+            // btnManageAccout
+            // 
+            this.btnManageAccout.Location = new System.Drawing.Point(12, 349);
+            this.btnManageAccout.Name = "btnManageAccout";
+            this.btnManageAccout.Size = new System.Drawing.Size(151, 29);
+            this.btnManageAccout.TabIndex = 5;
+            this.btnManageAccout.Text = "Account Manage";
+            this.btnManageAccout.UseVisualStyleBackColor = true;
+            this.btnManageAccout.Click += new System.EventHandler(this.btnManageAccout_Click);
+            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(12, 297);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(151, 29);
             this.button1.TabIndex = 4;
-            this.button1.Text = "History";
+            this.button1.Text = "History Transaction";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -116,16 +126,6 @@ namespace Project.GUI
             this.toolStripContainer1.TabIndex = 1;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
-            // btnManageAccout
-            // 
-            this.btnManageAccout.Location = new System.Drawing.Point(12, 349);
-            this.btnManageAccout.Name = "btnManageAccout";
-            this.btnManageAccout.Size = new System.Drawing.Size(151, 29);
-            this.btnManageAccout.TabIndex = 5;
-            this.btnManageAccout.Text = "Account Manage";
-            this.btnManageAccout.UseVisualStyleBackColor = true;
-            this.btnManageAccout.Click += new System.EventHandler(this.btnManageAccout_Click);
-            // 
             // ControlGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -134,6 +134,7 @@ namespace Project.GUI
             this.Controls.Add(this.toolStripContainer1);
             this.Controls.Add(this.panel1);
             this.Name = "ControlGUI";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ControlGUI";
             this.panel1.ResumeLayout(false);
             this.toolStripContainer1.ResumeLayout(false);

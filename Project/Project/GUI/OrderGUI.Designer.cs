@@ -122,6 +122,7 @@ namespace Project.GUI
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "OrderGUI";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "OrderGUI";
             this.Activated += new System.EventHandler(this.OrderGUI_Activated);
             this.Load += new System.EventHandler(this.OrderGUI_Load);

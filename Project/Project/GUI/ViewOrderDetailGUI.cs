@@ -33,10 +33,18 @@ namespace Project.GUI
             lblAddress.Text = import.CustomerAddress;
             lblName.Text = import.CustomerName;
             lblPhone.Text = import.CustomerPhone;
-            dataGridView1.DataSource = context.OrderDetails.Where(s => s.OrderId == id).ToList();
-            dataGridView1.Columns["Order"].Visible = false;
-            dataGridView1.Columns["Product"].Visible = false;
-            dataGridView1.Columns["OrderId"].Visible = false;
+            //dataGridView1.DataSource = context.OrderDetails.Where(s => s.OrderId == id).ToList();
+            dataGridView1.DataSource = context.OrderDetails.Include(s => s.Product).Where(s => s.OrderId == id)
+                .Select(p => new { 
+                    Id = p.ProductId,
+                    ProductName = p.Product.Name,
+                    Quantity = p.Quantity,
+                    SellPrice = p.SellPrice
+                }).ToList();
+            dataGridView1.Columns["Id"].Visible = false;
+            //dataGridView1.Columns["Order"].Visible = false;
+            //dataGridView1.Columns["Product"].Visible = false;
+            //dataGridView1.Columns["OrderId"].Visible = false;
         }
 
 

@@ -202,6 +202,7 @@ namespace Project.GUI
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "ProfileGUI";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ProfileGUI";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

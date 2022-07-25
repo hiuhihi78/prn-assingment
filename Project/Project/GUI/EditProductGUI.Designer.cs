@@ -223,6 +223,7 @@ namespace Project.GUI
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "EditProductGUI";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EditProductGUI";
             ((System.ComponentModel.ISupportInitialize)(this.numPrice)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDiscount)).EndInit();

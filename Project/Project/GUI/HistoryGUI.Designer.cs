@@ -67,9 +67,9 @@ namespace Project.GUI
             this.lblHeader.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblHeader.Location = new System.Drawing.Point(453, 9);
             this.lblHeader.Name = "lblHeader";
-            this.lblHeader.Size = new System.Drawing.Size(161, 31);
+            this.lblHeader.Size = new System.Drawing.Size(171, 31);
             this.lblHeader.TabIndex = 1;
-            this.lblHeader.Text = "History Order";
+            this.lblHeader.Text = "History Orders";
             // 
             // lblCustomer
             // 
@@ -211,6 +211,7 @@ namespace Project.GUI
             this.Controls.Add(this.lblHeader);
             this.Controls.Add(this.dataGridView1);
             this.Name = "HistoryGUI";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HistoryGUI";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

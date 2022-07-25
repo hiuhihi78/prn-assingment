@@ -186,7 +186,8 @@ namespace Project.GUI
                     OrderId = orderId,
                     ProductId = product.Id,
                     Quantity = product.Quantity,
-                    SellPrice = (product.Discount == 0) ? product.Quantity * product.Price : product.Quantity * product.Price * product.Discount / 100
+                    SellPrice = (product.Discount == 0) ? product.Price : product.Price - product.Price * product.Discount / 100
+                    //SellPrice = (product.Discount == 0) ? product.Quantity * product.Price : product.Quantity * product.Price * product.Discount / 100
                 };
 
                 Product productUpdate = context.Products.Find(product.Id);

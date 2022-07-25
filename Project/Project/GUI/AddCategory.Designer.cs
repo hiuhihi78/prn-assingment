@@ -93,6 +93,7 @@ namespace Project.GUI
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "AddCategory";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddCategory";
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -283,7 +283,9 @@ namespace Project.GUI
             }
             if(isData)
             {
-                ReportGUI report = new ReportGUI(isViewOrder);
+                DateTime from = dateStart.Value;
+                DateTime to = dateEnd.Value;
+                ReportGUI report = new ReportGUI(isViewOrder, from, to);
                 report.ShowDialog();
 
             } else

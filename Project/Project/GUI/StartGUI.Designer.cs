@@ -47,6 +47,7 @@ namespace Project.GUI
             this.ClientSize = new System.Drawing.Size(1515, 603);
             this.Controls.Add(this.panel1);
             this.Name = "StartGUI";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "StartGUI";
             this.ResumeLayout(false);
 

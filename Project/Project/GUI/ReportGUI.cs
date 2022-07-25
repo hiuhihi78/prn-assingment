@@ -15,10 +15,12 @@ namespace Project.GUI
     public partial class ReportGUI : Form
     {
         Shop1Context context;
-        public ReportGUI(bool isViewOrder)
+        public ReportGUI(bool isViewOrder, DateTime from, DateTime to)
         {
             InitializeComponent();
             context = new Shop1Context();
+            label7.Text = from.ToString("dd/MM/yyyy hh:mm:ss");
+            label9.Text = to.ToString("dd/MM/yyyy hh:mm:ss");
             if (isViewOrder)
             {
                 List<Order> listOrder = Setting.listReportOrder;
