@@ -1,0 +1,120 @@
+﻿ 
+@{
+    ViewData["Title"] = "CreateNewAccount";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <h1 class="text-center m-b-50">Creat new Account</h1>
+    <form action="DoCreatNewAccount" method="post" id="addForm">
+
+        <div class="form-group row">
+            <label for="" class="col-sm-2 col-form-label">Username</label>
+            <div class="col-sm-10">
+                <input type="text" name="username" id="username" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+                <input type="password" name="password" id="password" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="" class="col-sm-2 col-form-label">Fullname</label>
+            <div class="col-sm-10">
+                <input type="text" name="fullname" id="fullname" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="" class="col-sm-2 col-form-label">Phone</label>
+            <div class="col-sm-10">
+                <input type="text" name="phone" id="phone" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="" class="col-sm-2 col-form-label">Address</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" name="address" id="address" form="addForm" rows="3"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="" class="col-sm-2 col-form-label">Category</label>
+            <div class="col-sm-3">
+                <select name="role" class="form-control" id="category">
+                    <option value="0" selected>Staff</option>
+                    <option value="1" selected>Manager</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="status" value="activate" checked>
+                    <label class="form-check-label">Activate</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="status" value="deactivate">
+                    <label class="form-check-label">Deactivate</label>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+
+    <div class="form-group row">
+        <div class="col-sm-5"></div>
+        <div class="col-sm-1">
+            <button type="submit" class="btn btn-primary m-center" data-toggle="modal" data-target="#saveAdd">Save</button>
+        </div>
+        <div class="col-sm-1">
+            <button type="submit" class="btn btn-primary m-center" onclick="window.history.go(-1)">Cancel</button>
+        </div>
+        <div class="col-sm-5"></div>
+    </div>
+
+    <div class="modal fade" id="saveAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add new Account</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure?
+                </div>
+                <i id="alter" style="color:red"></i>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="submitForm()">Save changes</button>
+                    <button type="button" class="btn btn-secondary" onclick="document.getElementById('alter').innerHTML = ''" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        function submitForm() {
+            var username;
+            var password;
+            var fullname;
+            var phone;
+            if ($('#username').val() != "" && $('#password').val() != "" && $('#fullname').val() != "" &&
+                $('#phone').val() != "" && $('#address').val() != "") {
+                document.getElementById('addForm').submit();
+            } else {
+                document.getElementById('alter').innerHTML = "You must input all feild!";
+            }
+        }
+    </script>
+</div>

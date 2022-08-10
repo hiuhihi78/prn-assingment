@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+</div>
+
+<div class="container">
+    
+    <div class="row m-t-100">
+        <div class="col-md-4 ">
+            <a class="nav-link text-dark home-button-menu" href="../Order/Index">Order</a>
+        </div>
+        <div class="col-md-4 ">
+            <a class="nav-link text-dark home-button-menu" href="../Import/Index">Import</a>
+        </div>
+        <div class="col-md-4 ">
+            <a class="nav-link text-dark home-button-menu" href="../ProductManage/Index">Product manage</a>
+        </div>
+    </div>
+
+
+    <div class="row m-t-100">
+        <div class="col-md-4 ">
+            <a class="nav-link text-dark home-button-menu" href="../HistoryOrder/Index">History order</a>
+        </div>
+
+        <div class="col-md-4 ">
+            <a class="nav-link text-dark home-button-menu" href="../HistoryImport/Index">History import</a>
+        </div>
+
+        @if (ViewBag.staff.IsManager)
+        {
+            <div class="col-md-4 ">
+                <a class="nav-link text-dark home-button-menu" href="../AccountManage/Index">Account manage</a>
+            </div>
+        }
+
+    </div>
+</div>

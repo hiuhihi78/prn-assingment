@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string datenow = DateTime.Today.ToString("yyyy-MM-dd");
+}
+
+<div class="container-fluid">
+    <h1 class="text-center m-b-50">History Orders</h1>
+
+    <div class="search-box m-b-10">
+
+        <form action="Index" method="get">
+
+            <div class="form-group row">
+                <label for="" class="col-sm-1 col-form-label">Import Id</label>
+                <div class="col-sm-5">
+                    <input type="number" class="form-control" id="importId" name="importId" placeholder="Enter " value="@(ViewBag.importId == 0 ? "" : ViewBag.importId)">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="" class="col-sm-1 col-form-label">Staff Id</label>
+                <div class="col-sm-5">
+                    <input type="number" class="form-control" id="staffId" name="staffId" placeholder="Enter " value="@(ViewBag.staffId == 0 ? "" : ViewBag.staffId)">
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label for="" class="col-sm-1 col-form-label">Date</label>
+                <div class="col-sm-2">
+                    <input type="date" class="form-control" id="dateStart" name="dateStart" value="@(ViewBag.dateStart == null ? "2022-05-22" : ViewBag.dateStart)">
+                </div>
+
+                <div class="col-sm-2">
+                    <input type="date" class="form-control" id="dateEnd" name="dateEnd" value="@(ViewBag.dateStart == null ? datenow : ViewBag.dateEnd)">
+                </div>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </form>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table id="myTable" class="display" style="width:100%;">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Import date</th>
+                        <th>Staff Id</th>
+                        <th>Total amount</th>
+                        @if (ViewBag.staff.IsManager)
+                        {
+                            <th></th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Import order in ViewBag.imports)
+                    {
+                        <tr>
+                            <td>@order.Id</td>
+                            <td>@order.ImportDate</td>
+                            <td>@order.Staff.Fullname</td>
+                            <td>@order.TotalAmount</td>
+                            @if (ViewBag.staff.IsManager)
+                            {
+                                <td>
+                                    <button class="btn btn-secondary" onclick="ViewDetail(@order.Id);">View</button>
+                                </td>
+                            }
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function ViewDetail(id) {
+        window.location.href = "ViewImportDetail?id=" + id;
+    }
+</script>

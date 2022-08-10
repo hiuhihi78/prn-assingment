@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewData["Title"] = "DoViewOrderDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <h1 class="text-center m-b-50">Import Detail</h1>
+
+    <div class="order-info">
+        <p>ID: @ViewBag.import.Id</p>
+        <p>Staff: @ViewBag.import.Staff.Fullname</p>
+        <p>Date: @ViewBag.import.OrderDate</p>
+        <p>Total: @ViewBag.import.TotalAmount VND</p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table id="myTable" class="display" style="width:100%;">
+                <thead>
+                    <tr>
+                        <th>Product name</th>
+                        <th>Quantity</th>
+                        <th>Sell price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (ImportDetail order in ViewBag.importdetails)
+                    {
+                        <tr>
+                            <td>@order.Product.Name</td>
+                            <td>@order.Quantity</td>
+                            <td>@order.PriceImport</td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+

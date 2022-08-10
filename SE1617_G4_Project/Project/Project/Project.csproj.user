@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Compile Update="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GUI\AddCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GUI\AddEditAccountGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GUI\AddProductGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GUI\CheckoutGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GUI\CheckoutImportGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GUI\ControlGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GUI\EditProductGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GUI\HistoryGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GUI\ImportGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GUI\LoginGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GUI\MainGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GUI\ManageAccountGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GUI\OrderGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GUI\ProductManageGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GUI\ProfileGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GUI\ReportGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GUI\StartGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GUI\ViewImportDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GUI\ViewOrderDetailGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>

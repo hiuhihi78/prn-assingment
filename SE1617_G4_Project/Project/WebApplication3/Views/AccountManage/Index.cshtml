@@ -1,0 +1,199 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+
+    <h1 class="text-center m-b-50">Account Manage</h1>
+
+
+    <div class="search-box m-b-10">
+        <form action="Index" method="get">
+            <div class="form-group row">
+                <label for="id" class="col-sm-2 col-form-label">User Id</label>
+                <div class="col-sm-5">
+                    <input type="number" class="form-control" id="id" name="id" placeholder="Enter user's Id" value="@ViewBag.id">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="username" class="col-sm-2 col-form-label">User name</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter user's Name" value="@ViewBag.username">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="category" class="col-sm-2 col-form-label">Category</label>
+                <div class="col-sm-3">
+                    <select name="role" class="form-control">
+                        @if (ViewBag.roleSelected == 0)
+                        {
+                            <option value="0" selected>All category</option>
+                        }
+                        else
+                        {
+                            <option value="0">All Role</option>
+                        }
+
+                        @if (ViewBag.roleSelected == 1)
+                        {
+                            <option value="1" selected>Manager</option>
+                        }
+                        else
+                        {
+                            <option value="1">Manager</option>
+                        }
+
+                        @if (ViewBag.roleSelected == 2)
+                        {
+                            <option value="2" selected>Staff</option>
+                        }
+                        else
+                        {
+                            <option value="2">Staff</option>
+                        }
+
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-primary">Search</button>
+                <input type="button" class="btn btn-dark m-l-20" onclick="restForm();" value="Clear">
+            </div>
+        </form>
+    </div>
+
+    <div class="m-b-10">
+        <a href="CreateNewAccount"><h6>Create new Account</h6></a>
+    </div>
+
+    <div class="content">
+        <table id="myTable" class="display" style="width:100%;">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>Roke</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (staff staff in ViewBag.staffs)
+                {
+                    <tr>
+                        <td>@staff.Id</td>
+                        <td>@staff.Fullname</td>
+                        <td>@staff.Phone</td>
+                        <td>@staff.Address</td>
+                        <td>@(@staff.IsManager == true ? "Manager" : "Staff") </td>
+                        <td>
+                            @if (ViewBag.staffCurrent.Id != staff.Id)
+                            {
+                                <div id="status-@staff.Id">
+                                    <button class="@(staff.Status == true ? "btn btn-success" : "btn btn-danger")"
+                                            onclick="openModal(@staff.Id)"
+                                            data-toggle="modal"
+                                            data-target="#active">
+                                        @(staff.Status == true ? "Activate" : "Deactivate")
+                                    </button>
+                                </div>
+                            }
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary" onclick="DoViewDetail(@staff.Id);">View</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="modal" id="active">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div id="message-modal" class="modal-body">
+                    Are you sure to change ?
+                </div>
+                <div class="modal-footer">
+                    <button id="btn-change" type="button" class="btn btn-primary" data-dismiss="modal">Yes</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const inputId = document.querySelector('#id');
+        const inputName = document.querySelector('#username');
+        inputId.addEventListener('change', (event) => {
+            var value = event.target.value;
+            if (value != "") {
+                inputName.disabled = true;
+            } else {
+                inputName.disabled = false;
+            }
+        });
+
+        inputName.addEventListener('change', (event) => {
+            var value = event.target.value;
+            if (value != "") {
+                inputId.disabled = true;
+            } else {
+                inputId.disabled = false;
+            }
+        });
+
+        window.onload = function () {
+            if (inputId.value != "") {
+                inputName.disabled = true;
+            } else {
+                inputName.disabled = false;
+            }
+
+            if (inputName.value != "") {
+                inputId.disabled = true;
+            } else {
+                inputId.disabled = false;
+            }
+        };
+
+        function restForm() {
+            inputId.disabled = false;
+            inputName.disabled = false;
+            inputId.value = "";
+            inputName.value = "";
+        }
+
+        function DoViewDetail(id) {
+            window.location.href = "Detail?id=" + id;
+        }
+
+
+        function openModal(id) {
+            var button = document.querySelector('#btn-change');
+            button.onclick = function () {
+                var div = document.getElementById('status-' + id);
+                $.ajax({
+                    url: '/AccountManage/DoActivateAccount',
+                    type: 'GET',
+                    data: {
+                        id: id
+                    },
+                    success: function (response) {
+                        div.innerHTML = response;
+                        alert("Change successfully!");
+                    },
+                    error: function () {
+                        alert('Faild');
+                    }
+                });
+            };
+        }
+    </script>

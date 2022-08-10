@@ -1,0 +1,25 @@
+render page	
+https://www.youtube.com/watch?v=dpcDlyckAZE
+
+filter, sort
+https://www.youtube.com/watch?v=U0zYxZ6OzDM
+config timeout token authentication c#
+
+
+filter pipeline
+
+https://viblo.asia/p/tong-quan-ve-middleware-ung-dung-middleware-trong-aspnet-core-RnB5pOz2lPG
+
+Implementing Intercepting Filter in ASP.NET Using HTTP Module
+
+
+
+
+https://stackoverflow.com/questions/1490401/redirecting-to-specified-controller-and-action-in-asp-net-mvc-action-filter
+
+
+https://www.youtube.com/watch?v=IOj5bN_X7Qo
+
+
+Rendering a Partial View
+https://www.tutorialsteacher.com/mvc/partial-view-in-asp.net-mvc

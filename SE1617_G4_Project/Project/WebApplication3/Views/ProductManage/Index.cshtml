@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="container-fluid">
+    <h1 class="text-center m-b-50">Product Manage</h1>
+    <div class="search-box m-b-10">
+        <form action="Index" method="post">
+            <div class="form-group row">
+                <label for="productName" class="col-sm-1 col-form-label">Product name</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" id="productName" name="productName" placeholder="Enter product's name" value="@ViewBag.productName">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="priceStart" class="col-sm-1 col-form-label">Product name</label>
+                <div class="col-sm-3">
+                    <input type="number" class="form-control" id="priceStart" name="raw_priceStart" min="0" max="getEndPriceValue();" value="@(ViewBag.priceStart == 0 ? "0" : ViewBag.priceStart)">
+                </div>
+                <span>-</span>
+                <div class="col-sm-3">
+                    <input type="number" class="form-control" id="priceEnd" name="raw_priceEnd" min="getStartPriceValue();" value="@(ViewBag.priceEnd == 0 ? "100000" : ViewBag.priceEnd)">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="category" class="col-sm-1 col-form-label">Category</label>
+                <div class="col-sm-3">
+                    <select name="category" class="form-control">
+                        @if (ViewBag.categorySelected == 0)
+                        {
+                            <option value="0" selected>All category</option>
+                        }
+                        else
+                        {
+                            <option value="0">All category</option>
+                        }
+                        @foreach (Category category in ViewBag.Category)
+                        {
+                            @if (category.Id == ViewBag.categorySelected)
+                            {
+                                <option value="@category.Id" selected>@category.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@category.Id">@category.Name</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="m-b-10">
+        <a href="CreateNewProduct"><h5>Create new product</h5></a>
+    </div>
+
+    <div class="content">
+        <table id="myTable" class="display" style="width:100%;">
+            <thead>
+                <tr>
+                    <th>Product name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Discount</th>
+                    <th>Category</th>
+                    @if (ViewBag.staff.IsManager)
+                    {
+                        <th></th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Product product in ViewBag.products)
+                {
+                    <tr>
+                        <td>@product.Name</td>
+                        <td>@product.Quantity</td>
+                        <td>@product.Price</td>
+                        <td>@product.Discount%</td>
+                        <td>@product.Category.Name</td>
+                        @if (ViewBag.staff.IsManager)
+                        {
+                            <td>
+                                <button class="btn btn-secondary" onclick="DoEdit(@product.Id);">Edit</button>
+                            </td>
+                        }
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+       
+        <p>@ViewBag.cateId</p>
+    <script>
+
+       
+        function getStartPriceValue() {
+            return document.getElementById('priceStart').value;
+        }
+
+        function getEndPriceValue() {
+            return document.getElementById('priceEnd').value;
+        }
+
+        function DoEdit(id) {
+            document.location.href = "Edit?id=" + id;
+        }
+
+    </script>
+
+

@@ -1,0 +1,118 @@
+﻿
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model WebApplication3.Models.Product;
+
+<div class="container-fluid">
+    <h1 class="text-center m-b-50">Edit Product</h1>
+    <form action="DoEdit" method="post" id="editForm">
+
+        <input type="hidden" name="id" value="@Model.Id" />
+        <input type="hidden" class="form-control" name="quantity" value="@Model.Quantity" >
+
+        <div class="form-group row">
+            <label for="" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+                <input type="text" name="name" class="form-control" id="" value="@Model.Name">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="" class="col-sm-2 col-form-label">Description</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" name="description" form="editForm"  rows="3">@Model.Description</textarea>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="" class="col-sm-2 col-form-label">Quantity</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="quantity" value="@Model.Quantity" disabled>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="" class="col-sm-2 col-form-label">Price</label>
+            <div class="col-sm-10">
+                <input type="number" class="form-control" min="0" name="price" value="@Model.Price">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="" class="col-sm-2 col-form-label">Discount</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="discount" min="0" max="100" value="@Model.Discount">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="" class="col-sm-2 col-form-label">Country</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="country" value="@Model.Country">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="" class="col-sm-2 col-form-label">Category</label>
+            <div class="col-sm-3">
+                <select name="category" class="form-control">
+                    @foreach (Category category in ViewBag.Category)
+                    {
+                        @if (category.Id == ViewBag.categorySelected)
+                        {
+                            <option value="@category.Id" selected>@category.Name</option>
+                        }
+                        else
+                        {
+                            <option value="@category.Id">@category.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+    </form>
+    <div class="form-group row">
+        <div class="col-sm-5"></div>
+        <div class="col-sm-1">
+            <button type="submit" class="btn btn-primary m-center" data-toggle="modal" data-target="#saveEdit">Save</button>
+        </div>
+        <div class="col-sm-1">
+            <button type="submit" class="btn btn-primary m-center"  onclick="window.history.go(-1)" >Cancel</button>
+        </div>
+        <div class="col-sm-5"></div>
+    </div>
+
+
+
+    <div class="modal fade" id="saveEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="submitForm()">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+<script>
+    function submitForm() {
+        document.getElementById('editForm').submit();
+    }
+</script>

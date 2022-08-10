@@ -1,0 +1,171 @@
+﻿
+@{
+    ViewData["Title"] = "CreateNewProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <h1 class="text-center m-b-50">Creat new product</h1>
+    <form action="DoCreateNewProduct" method="post" id="addForm">
+
+
+        <div class="form-group row">
+            <label for="" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+                <input type="text" name="name" id="name" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="" class="col-sm-2 col-form-label">Description</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" name="description" id="description" form="addForm" rows="3"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="" class="col-sm-2 col-form-label">Price</label>
+            <div class="col-sm-10">
+                <input type="number" class="form-control" min="0" name="price" value="0">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="" class="col-sm-2 col-form-label">Discount</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="discount" min="0" max="100" value="0">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="" class="col-sm-2 col-form-label">Country</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="country" id="country">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="" class="col-sm-2 col-form-label">Category</label>
+            <div class="col-sm-3">
+                <select name="category" class="form-control" id="category">
+                    @foreach (Category category in ViewBag.Category)
+                    {
+                        @if (category.Id == ViewBag.categorySelected)
+                        {
+                            <option value="@category.Id" selected>@category.Name</option>
+                        }
+                        else
+                        {
+                            <option value="@category.Id">@category.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="col-sm-1">
+                <button type="button" class="btn-increase" data-toggle="modal" data-target="#addNewCategory">+</button>
+            </div>
+        </div>
+    </form>
+    <div class="form-group row">
+        <div class="col-sm-5"></div>
+        <div class="col-sm-1">
+            <button type="submit" class="btn btn-primary m-center" data-toggle="modal" data-target="#saveAdd">Save</button>
+        </div>
+        <div class="col-sm-1">
+            <button type="submit" class="btn btn-primary m-center" onclick="window.history.go(-1)">Cancel</button>
+        </div>
+        <div class="col-sm-5"></div>
+    </div>
+
+
+
+    <div class="modal fade" id="saveAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add new product</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure?
+                </div>
+                <i id="alter" style="color:red"></i>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="submitForm()">Save changes</button>
+                    <button type="button" class="btn btn-secondary" onclick="document.getElementById('alter').innerHTML = ''" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="addNewCategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel1">Add new product</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="newCategory">New category</label>
+                        <input type="text" class="form-control" name="newCategory" id="newCategory" placeholder="Enter new category name" required=""> 
+                    </div>
+                </div>
+                <i id="alter" style="color:red"></i>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="handleSaveCategory();" >Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+
+
+<script>
+    function submitForm() {
+        if (document.getElementById('name').value != "" && document.getElementById('country').value != ""
+            && document.getElementById('description').value != "")
+        {
+            document.getElementById('addForm').submit();
+        } else {
+            document.getElementById('alter').innerHTML = "You must input all feild!";
+        }
+    }
+
+    function handleSaveCategory() {
+
+        var category = document.getElementById('newCategory').value;
+        var selectCategory = document.getElementById('category');
+        $.ajax({
+            url: '/ProductManage/AddNewCategory',
+            type: 'POST',
+            data: {
+                newCategory: category
+            },
+            success: function (response) {
+                if (response == "Category was existed") {
+                    alert('The category name was existed!');
+                } else {
+                    selectCategory.innerHTML += response;
+                    alert("Add new category success!");
+                }
+            },
+            error: function () {
+                alert('Faild');
+            }
+        });
+
+    }
+</script>
+

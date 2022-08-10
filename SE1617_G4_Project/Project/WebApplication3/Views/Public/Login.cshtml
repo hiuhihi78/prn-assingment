@@ -1,0 +1,43 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/utitl.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+    <title>Login</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <img src="~/images/banner.png" alt="Alternate Text" style="width:1420px;"/>
+        </div>
+        <div class="row">
+            <form action="DoLogin" method="Post" class="m-center m-t-10 login-box">
+                <h2 class="text-center">Login</h2>
+                <div class="form-group">
+                    <label for="username">User name</label>
+                    <input type="text" class="form-control" id="username" aria-describedby="emailHelp" name="username" placeholder="Enter username" value="@ViewBag.username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                </div>
+                @if(ViewBag.alter != "")
+                {
+                    <i style="color:red">@ViewBag.alter</i><br />
+                }
+                <button type="submit" class="btn btn-primary m-center">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <p>@ViewBag.staff</p>
+</body>
+</html>
